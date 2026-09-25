@@ -41,6 +41,6 @@ const sortByFrequency = (arr) => {
     return [...arr].sort((a, b) => {
         const freqDiff = frequencies.get(b) - frequencies.get(a);
 
-        return freqDiff !== 0 ? freqDiff : a - b;
+        return freqDiff || a - b;
     });
 };
