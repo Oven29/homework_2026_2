@@ -21,7 +21,10 @@ const sortByFrequency = (arr) => {
         throw new TypeError('Argument must be an array');
     }
 
-    const areAllNumbers = arr.every((item) => typeof item === 'number' && !Number.isNaN(item));
+    const areAllNumbers = arr.every((item) =>
+        typeof item === 'number' &&
+        !Number.isNaN(item)
+    );
     if (!areAllNumbers) {
         throw new TypeError('All array elements must be valid numbers');
     }
@@ -30,14 +33,14 @@ const sortByFrequency = (arr) => {
         return [...arr];
     }
 
-    const frequencies = arr.reduce((acc, item) => acc.set(item, (acc.get(item) || 0) + 1), new Map());
+    const frequencies = arr.reduce(
+        (acc, item) => acc.set(item, (acc.get(item) || 0) + 1),
+        new Map()
+    );
 
     return [...arr].sort((a, b) => {
         const freqDiff = frequencies.get(b) - frequencies.get(a);
-        if (freqDiff !== 0) {
-            return freqDiff;
-        }
 
-        return a - b;
+        return freqDiff !== 0 ? freqDiff : a - b;
     });
 };
